@@ -1,0 +1,203 @@
+\input{preamble}
+
+% OK, start here.
+%
+\begin{document}
+
+\title{C.4}
+
+
+\maketitle
+
+\phantomsection
+\label{section-phantom}
+
+
+\tableofcontents
+
+
+\section{Introduction}
+\label{section-introduction}
+
+\noindent
+We try to understand how to go from a groupoid schemne to a
+Tannakian category and then back to the groupoid.
+A reference is \cite{Deligne-tannakian}.
+
+
+
+\section{Preliminaries}
+\label{section-preliminaries}
+
+\noindent
+Some definitions and lemmas.
+
+\begin{definition}
+\label{definition-representations}
+Let $(U, R, s, t, c)$ be a groupoid scheme. The
+{\it category of vector bundles on $(U, R, s, t, c)$} denoted
+$\textit{Vect}(U, R, s, t, c)$ is the full subcategory of
+$\QCoh(U, R, s, t, c)$ consisting of pairs $(\mathcal{F}, \alpha)$
+with $\mathcal{F}$ finite locally free.
+\end{definition}
+
+\begin{lemma}
+\label{lemma-vector-bundles-on-groupoid}
+In the situation of Definition \ref{definition-representations}
+the category $\textit{Vect}(U, R, s, t, c)$ is an additive symmetric
+monoidal category where every object has a dual.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{definition}
+\label{definition-affine-fpqc-gerbe}
+Let $k$ be a field. Let $(U, R, s, t, c)$ be a groupoid scheme over $k$.
+We say $(U, R, s, t, c)$ is {\it AFG} if the following conditions hold:
+\begin{enumerate}
+\item $U$ is not empty,
+\item $U$ and $R$ are affine,
+\item $(s, t) : R \to U \times_{\Spec(k)} U$ is flat and surjective.
+\end{enumerate}
+\end{definition}
+
+\noindent
+The letters AFG stand for affine fpqc gerbe, because the conditions guarantee
+that the quotient stack $U/G$ in the fpqc topology is a gerbe over $\Spec(k)$.
+
+\begin{lemma}
+\label{lemma-vector-bundles-on-groupoid}
+Let $k$ be a field. Let $(U, R, s, t, c)$ be AFG. The category
+$\textit{Vect}(U, R, s, t, c)$ is Tannakian and the forgetful
+functor $F : \textit{Vect}(U, R, s, t, c) \to \textit{Vect}(U)$
+is a fibre functor.
+\end{lemma}
+
+\begin{proof}
+Omitted. We may want to move this lemma later.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restrict}
+Let $k$ be a field. Let $(U, R, s, t, c)$ be AFG.
+For any nonempty affine scheme $U'$ and morphism $U' \to U$ the
+restriction $(U', R', s', t', c')$ is AFG.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-restrict-equivalences}
+In the situation of Lemma \ref{lemma-restrict} the pullback functor
+$\QCoh(U, R, s, t, c) \to \QCoh(U', R', s', t', c')$ is an equivalence
+and determines an equivalence
+$\textit{Vect}(U, R, s, t, c) \to \textit{Vect}(U', R', s', t', c')$.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-vect-is-ft-qcoh}
+Let $k$ be a field. Let $(U, R, s, t, c)$ be AFG.
+Then $\textit{Vect}(U, R, s, t, c)$ is equal to the
+full subcategory of $\QCoh(U, R, s, t, c)$ consisting of
+finite type quasi-coherent modules on $(U, R, s, t, c)$.
+\end{lemma}
+
+\begin{proof}
+Omitted. Hint:
+Follows by reduction to the case where $U$ is the spectrum of
+a field which we can do by Lemma \ref{lemma-restrict-equivalences}.
+\end{proof}
+
+\begin{lemma}
+\label{lemma-colimit}
+Let $k$ be a field. Let $(U, R, s, t, c)$ be AFG.
+Then we have
+$\QCoh(U, R, s, t, c) = \text{Ind}(\textit{Vect}(U, R, s, t, c))$.
+\end{lemma}
+
+\begin{proof}
+Sketch: First by Lemma \ref{lemma-restrict-equivalences}
+we may assume $U = \Spec(K)$ where $K/k$ is a field extension.
+In this case the lemma follows from Lemma \ref{lemma-vect-is-ft-qcoh}
+and Groupoids, Lemma \ref{groupoids-lemma-colimit-finite-type}.
+\end{proof}
+
+
+
+
+
+\section{Going back}
+\label{section-going-back}
+
+\noindent
+Let $k$ be a field. Let $(U, R, s, t, c)$ be AFG. Consider the fibre functor
+$$
+F : \textit{Vect}(U, R, s, t, c) \to \textit{Vect}(U)
+$$
+of Lemma \ref{lemma-vector-bundles-on-groupoid}. For any scheme
+$U'$ over $U$ we can consider the composition
+$$
+F' : \textit{Vect}(U, R, s, t, c) \to \textit{Vect}(U')
+$$
+of $F$ with the pullback functor $\textit{Vect}(U) \to \textit{Vect}(U')$.
+In particular we have two functors
+$$
+F_1, F_2 :
+\textit{Vect}(U, R, s, t, c)
+\to
+\textit{Vect}(U \times_{\Spec(k)} U)
+$$
+corresponding to the two projections
+$\text{pr}_i : U \times_{\Spec(k)} U \to U$. We consider the functor
+$$
+\mathcal{R} :
+\textit{Schemes}/U \times_{\Spec(k)} U \longrightarrow \textit{Sets}
+$$
+sending a scheme $T/U \times_{\Spec(k)} U$ to the set of isomorphisms
+of $F_1|T$ to $F_2|_T$. Let us denote $h_R$ the representable functor
+on $\textit{Schemes}/U \times_{\Spec(k)} U$ given by $R$ viewed as
+a scheme over $U \times_{\Spec(k)} U$ via $(s, t)$.
+We claim there is a transformation of functors
+$$
+h_R \longrightarrow \mathcal{R}
+$$
+Namely, given $r : T \to R$ and an object $V = (\mathcal{F}, \alpha)$ of
+$\textit{Vect}(U, R, s, t, c)$ the map $\alpha$ induces an isomorphism
+$$
+(F_1|_T)(V) = (s \circ r)^*\mathcal{F}
+\longrightarrow
+(t \circ r)^*\mathcal{F} = (F_2|_T)(V)
+$$
+functorial in $V$ and compatible with tensor products.
+
+\begin{lemma}
+\label{lemma-equivalence}
+The transformation $h_R \longrightarrow \mathcal{R}$
+described above is an isomorphism.
+\end{lemma}
+
+\begin{proof}
+Omitted.
+\end{proof}
+
+
+
+
+
+
+
+
+\input{chapters}
+
+\bibliography{my}
+\bibliographystyle{amsalpha}
+
+\end{document}
