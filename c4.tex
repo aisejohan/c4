@@ -26,6 +26,61 @@ A reference is \cite{Deligne-tannakian}.
 
 
 
+\section{Descent lemma for quasi-coherent modules}
+\label{section-descent}
+
+\begin{lemma}
+\label{lemma-descent}
+Let $(U, R, s, t, c)$ be a groupoid scheme. Let $g : U' \to U$ be a morphism
+of schemes. Let $(U', R', s', t', c')$ be the restriction of $(U, R, s, t, c)$
+by $g$. The pullback functor
+$$
+\QCoh(U, R, s, t, c)
+\longrightarrow
+\QCoh(U', R', s', t', c')
+$$
+is an equivalence if the morphism
+$$
+\xymatrix{
+T = U' \times_{g, U, t} R \ar[r]_-{\text{pr}_1} \ar@/^3ex/[rr]^h
+& R \ar[r]_s & U
+}
+$$
+is quasi-compact, flat, and surjective.
+\end{lemma}
+
+\begin{proof}
+We construct a functor quasi-inverse to the pullback functor.
+Thus given an object $(\mathcal{F}', \alpha')$ of
+$\QCoh(U', R', s', t', c')$ we have to construct an object
+of $\QCoh(', R, s, t, c)$. To do this we can try to descend
+$(T \to U')^*\mathcal{F}'$ to a quasi-coherent module on $U$.
+Since $\{T \to U\}$ is an fpqc covering, it suffices for this
+to construct an isomorphism of the two pullbacks of $\mathcal{F}'$
+to $T \times_U T$ satisfying the cocycle conditions on
+$T \times_U T \times_U T$. For this, since we have $\alpha'$, it suffices
+to construct a morphism
+$$
+T \times_U T =
+(U' \times_{g, U, t} R)
+\times_U
+(U' \times_{g, U, t} R)
+\longrightarrow
+(U' \times_{U, t} R \times_{s, U} U') = R'
+$$
+and for this we can use the formula
+$((u'_1, r_1), (u'_2, r_2)) \mapsto (u'_1, r_1 \circ r_2^{-1}, u'_2)$
+in scheme valued points. To check the cocycle condition, use the
+cocycle condition on $\alpha'$; horrible details omitted.
+This gives a quasi-coherent module $\mathcal{F}$ on $U$.
+Then finally you have to use the cocycle condition on $\alpha'$
+again to show that you can descend $\alpha'$ to get
+$\alpha : t^*\mathcal{F} \to s^*\mathcal{F}$ on $R$. Lot's of
+details omitted.
+\end{proof}
+
+
+
 \section{Preliminaries}
 \label{section-preliminaries}
 
@@ -162,7 +217,8 @@ $$
 \textit{Schemes}/U \times_{\Spec(k)} U \longrightarrow \textit{Sets}
 $$
 sending a scheme $T/U \times_{\Spec(k)} U$ to the set of isomorphisms
-of $F_1|T$ to $F_2|_T$. Let us denote $h_R$ the representable functor
+of $k$-linear symmetric monoidal functors from $F_1|T$ to $F_2|_T$.
+Let us denote $h_R$ the representable functor
 on $\textit{Schemes}/U \times_{\Spec(k)} U$ given by $R$ viewed as
 a scheme over $U \times_{\Spec(k)} U$ via $(s, t)$.
 We claim there is a transformation of functors
@@ -172,9 +228,9 @@ $$
 Namely, given $r : T \to R$ and an object $V = (\mathcal{F}, \alpha)$ of
 $\textit{Vect}(U, R, s, t, c)$ the map $\alpha$ induces an isomorphism
 $$
-(F_1|_T)(V) = (s \circ r)^*\mathcal{F}
-\longrightarrow
-(t \circ r)^*\mathcal{F} = (F_2|_T)(V)
+(F_1|_T)(V) = (s \circ r)^*\mathcal{F} = r^*s^*\mathcal{F}
+\xrightarrow{r^*\alpha^{-1}}
+r^*t^*\mathcal{F} = (t \circ r)^*\mathcal{F} = (F_2|_T)(V)
 $$
 functorial in $V$ and compatible with tensor products.
 
@@ -185,7 +241,7 @@ described above is an isomorphism.
 \end{lemma}
 
 \begin{proof}
-Omitted.
+Let $T$ be a scheme and let
 \end{proof}
 
 
