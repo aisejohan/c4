@@ -248,6 +248,99 @@ Let $T$ be a scheme and let
 
 
 
+\section{Tried something}
+\label{section-try}
+
+\medskip\noindent
+OK, so I am wondering if we can rely as much as possible on the
+(generalization of) the argument by Yifei in the writeup on C1.
+Let me try this with the proof of the main question in C4.
+Here is my attempt --- of course I am very happy if there are
+better ways to do this.
+
+\medskip\noindent
+Given is a groupoid scheme $(U, R, s, t, c)$ over a field $k$ with
+$U$, $R$ affine and $(s, t)$ surjective and flat.
+
+\medskip\noindent
+Write $U = Spec(A_U)$ and $R = Spec(A_R)$.
+
+\medskip\noindent
+Set $\mathcal{C} = Vect(U, R, s, t, c)$ as a $k$-linear tensor category.
+Consider the obvious fibre functor $F : \mathcal{C} \to Mod_{A_U}$.
+Of course for $V$ in $\mathcal{C}$ the module $F(V)$ is finite locally
+free over $A_U$.
+
+\medskip\noindent
+Let $A$ be as in 1.1.3 of the file C1.pdf using $F$ but with tensor
+products over $k$. In other words, we set
+$$
+A = \text{colim}_{V \to W} F(V) \otimes_k F(W)^\vee
+$$
+viewed as an $A_U \otimes_k A_U$-algebra. Note that $F(W)^\vee$ is the
+$A_U$-linear dual here and not the $k$-linear dual. I think this is
+still commutative, but I did not check this at all!
+
+\medskip\noindent
+GOAL: construct a canonical isomorphism $A = A_R$ as
+$A_U \otimes_k A_U$-algebras.
+
+\medskip\noindent
+The first point to make is that there is a canonical map
+$$
+A \longrightarrow A_R
+$$
+Namely, let $V \to W$ be a morphism in $\mathcal{C}$.
+I am going to factor the map $F(V) \otimes_k F(W)^\vee \to A_R$
+through a map $F(V) \otimes_k F(V)^\vee \to A_R$, so I can just
+work with $V$. Write $V = (\mathcal{F}, \alpha)$ where $\mathcal{F}$
+is a finite locally free $\mathcal{O}_U$-module and
+$\alpha : t^*\mathcal{F} \to s^*\mathcal{F}$ is the assumed
+isomorphsm on $R$. Then we have
+$$
+F(V) \otimes_k F(V)^\vee =
+\Gamma(U, \mathcal{F}) \otimes_k \Gamma(U, \mathcal{F}^\vee)
+$$
+Now an element of the right hand side gives by pulling back
+by $s$ and $t$ on the first and second factor
+(we may have to switch this) a global section of
+$$
+s^*\mathcal{F} \otimes_{\mathcal{O}_R} t^*\mathcal{F}^\vee
+\xrightarrow{1 \otimes \alpha}
+s^*(\mathcal{F} \otimes_{\mathcal{O}_U} \mathcal{F}^\vee)
+\xrightarrow{evaluation}
+\mathcal{O}_R
+$$
+and hence we get a section of the structure sheaf of $R$, i.e.,
+an element of $A_R$. Then you have to check this is compatible
+with the transition mappings.
+
+\medskip\noindent
+Denote $F' : QCoh(U, R, s, t, c) \to Mod_{A_U}$ the obvious
+extension of $F$ to the category of all quasi-coherent modules
+on the groupoid. By Tag 07TR there is an object
+$V' = (t_*\mathcal{O}_R, \alpha)$ in $QCoh(U, R, s, t, c)$
+such that $F'(V') = A_R$. Evaluation at the neutral section
+$e : U \to R$ should give a map $V' \to 1$ in $\QCoh(U, R, s, t, c)$.
+Then the construction above should still give a map
+$$
+F'(V') \otimes_k F(1)^vee = A_R \otimes_k A_U \longrightarrow A_R
+$$
+which should show that our map $A \to A_R$ is surjective because
+we know that $V'$ can be written as a filtered colimit of objects
+in $\mathcal{C}$. Lot's of details omitted; please ask me.
+
+\medskip\noindent
+As Yifei pointed out the tricky part should be to show that $A \to A_R$
+is injective. I think to do this we interpret an element $a$ of $A$
+as an $A_U \otimes_k A_U$-linear endo $t_a$ of the tensor functor
+$F \otimes_k A_U$. If $a$ maps to zero in $A_R$, then I think $t_a$
+sort of restricts to zero when you go to $F \otimes_{A_U} A_R$.
+My idea is that we should look at the action of $t_a$ on $F'(V')$
+with $V'$ as above to see that $a$ would have to be zero,
+but I didn't try too hard.
+
+
 
 
 
